@@ -28,7 +28,7 @@ body {
     
     font-family: "Montserrat", sans-serif;
     height: 100vh;
-    background-color: #000;
+    background-image: var(--nighttime-gradient);
 }
 
 main {
@@ -72,22 +72,6 @@ footer {
 p {
     font-size: 2rem;
     text-align: center;
-}
-
-.sunrise {
-    background-image: var(--sunrise-gradient);
-}
-
-.daytime {
-    background-image: var(--daytime-gradient);
-}
-
-.sunset {
-    background-image: var(--sunset-gradient);
-}
-
-.nighttime {
-    background-image: var(--nighttime-gradient);
 }
 
 .overview {

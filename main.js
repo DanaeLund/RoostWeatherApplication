@@ -13,38 +13,39 @@ async function getLocation() {
     });
 }
 
-function formatTime(date) {
-    let hours = date.getHours();
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+function formatTime(currentTime) {
+    let hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes().toString().padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12;
+    setBackground(hours, ampm);
     return `${hours}:${minutes} ${ampm}`;
 }
 
-function setBackground(hours) {
+function setBackground(hours, ampm) {
     const greetingTxt = document.getElementById("greeting-txt");
-    const body = document.body;
+    const body = document.getElementById("body");
 
-    if (hours >= 5 && hours < 8) {
-        body.className = 'sunrise';
+    if (hours >= 5 && hours < 9 && ampm === 'AM') {
         greetingTxt.innerHTML = "Good Morning, Little Bird.";
-    } else if (hours >= 8 && hours < 17) {
-        body.className = 'daytime';
+        body.style.backgroundImage = "var(--sunrise-gradient)";
+    } else if (hours >= 9 && hours < 12 && ampm === 'AM' || hours >= 0 && hours < 6 && ampm === 'PM') {
         greetingTxt.innerHTML = "Good Day, Little Bird.";
-    } else if (hours >= 17 && hours < 20) {
-        body.className = 'sunset';
+        body.style.backgroundImage = "var(--daytime-gradient)";
+    } else if (hours >= 6 && hours < 8 && ampm === 'PM') {
         greetingTxt.innerHTML = "Good Evening, Little Bird.";
+        body.style.backgroundImage = "var(--sunset-gradient)";
     } else {
-        body.className = 'nighttime';
         greetingTxt.innerHTML = "Good Night, Little Bird.";
+        body.style.backgroundImage = "var(--nighttime-gradient)";
     };
 
 }
 
 
 window.addEventListener('load', async ()=> {
-    const background = setBackground();
 
     // The API key for OpenWeather
     const APIkey ="8f9e84d034717c6f80388c02c984a4ea";
@@ -81,10 +82,10 @@ window.addEventListener('load', async ()=> {
     if (tempCelcius <= 0) {
         tempDescription.innerHTML = "It's too cold, get back in the nest";
         tempTxt.innerHTML = `${tempCelcius}`;
-    } else if (tempCelcius >= 0 && tempCelcius <= 20){
+    } else if (tempCelcius >= 0 && tempCelcius <= 25){
         tempDescription.innerHTML = "It's a good day for flying";
         tempTxt.innerHTML = `${tempCelcius}`;
-    } else if (tempCelcius >= 20){
+    } else if (tempCelcius >= 25){
         tempDescription.innerHTML = "Stay in the shade, it's too hot";
         tempTxt.innerHTML = `${tempCelcius}`;
     } else {
