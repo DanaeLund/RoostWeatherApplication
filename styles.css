@@ -13,7 +13,7 @@
     
     --dark-text-color: #000;
     --light-text-color: #fff;
-    --text-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    --text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -39,6 +39,8 @@ main {
     color: var(--light-text-color);
     text-shadow: var(--text-shadow);
     height: 100%;
+    margin-inline: 2rem;
+    text-align: center;
 }
 
 header {
@@ -56,22 +58,15 @@ header > h1 {
     font-weight: 250;
 
     width: 100%;
-    padding: 1rem;
+    padding: 0.5rem;
     background: rgba(0, 0, 0, 0.164);
     backdrop-filter: blur(10px);
 }
-
-
 
 footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-}
-
-p {
-    font-size: 2rem;
-    text-align: center;
 }
 
 .overview {
@@ -81,6 +76,13 @@ p {
     justify-content: center;
 
     padding-top: 5rem;
+}
+
+#greeting-txt, #description-txt {
+    font-size: 2rem;
+    font-family: "Playwrite CU", cursive;
+    font-weight: 250;
+    text-align: center;
 }
 
 .temp-section {
@@ -124,4 +126,62 @@ p {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+@media (min-width: 420px) and (max-width: 600px){
+    header > h1 {
+        font-size: 3rem;
+    }
+
+    #greeting-txt, #description-txt {
+        font-size: 1.5rem;
+        font-family: "Playwrite CU", cursive;
+        font-weight: 250;
+    }
+
+    .temp-section {
+        padding-block: 2rem;
+    }
+    
+    .time-txt {
+        font-size: 0.75rem;
+    }
+    
+    .temp-txt {
+        font-size: 4rem;
+        font-family: "Playwrite CU", cursive;
+        font-weight: 250;
+    }
+    
+    .location-txt {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 420px){
+    header > h1 {
+        font-size: 1.75rem;
+    }
+
+    #greeting-txt, #description-txt {
+        font-size: 1.5rem;
+        font-family: "Playwrite CU", cursive;
+        font-weight: 250;
+    }
+
+    .temp-section {
+        padding-block: 2rem;
+    }
+    
+    .time-txt {
+        font-size: 0.75rem;
+    }
+    
+    .temp-txt {
+        font-size: 2rem;
+    }
+    
+    .location-txt {
+        font-size: 0.9rem;
+    }
 }
